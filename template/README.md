@@ -2,6 +2,8 @@
 
 Human-gated GitHub issue pipeline: OpenAI writes the spec, you add `ready`, a Cursor cloud agent opens a small draft PR.
 
+**Read first:** [Building a Team of Engineers](https://www.mitchelldawkins.com/blog/team-of-engineers-cursor-agent-pipeline) — the blog post that explains the architecture, a real production run, and how the pieces fit together. This directory is the installable template.
+
 **Tier 1 only** — spec → implement → draft PR → human merge. Optional CI and review-bot recipes live in [docs/recipes/](../docs/recipes/).
 
 ## Prerequisites
@@ -16,7 +18,7 @@ Human-gated GitHub issue pipeline: OpenAI writes the spec, you add `ready`, a Cu
 
 2. **Customize context** — edit `.github/ai-spec-context.md` and `.github/ai-implement-context.md` with your stack. Replace `My App` / `owner/repo` placeholders. See `examples/vite-react/` for snippets.
 
-3. **Install dispatch package** — run `npm install` (installs `@issue-bench/dispatch`).
+3. **Install dependencies** — run `npm install` (installs `@cursor/sdk` for the dispatch script).
 
 4. **Add secrets** — `OPENAI_API_KEY`, `CURSOR_API_KEY` under Settings → Secrets → Actions.
 
@@ -64,5 +66,5 @@ See [docs/LABELS.md](../docs/LABELS.md) for the full state machine.
 
 ## Learn more
 
+- [Blog: Building a Team of Engineers](https://www.mitchelldawkins.com/blog/team-of-engineers-cursor-agent-pipeline)
 - [Setup guide](../docs/SETUP.md)
-- [Blog: Building a Team of Engineers](https://mitchelldawkins.com/blog/team-of-engineers-cursor-agent-pipeline)

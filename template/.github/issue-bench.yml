@@ -1,0 +1,15 @@
+project:
+  name: "My App"
+  defaultBranch: main
+agent:
+  model: composer-2.5
+  startingRef: main
+commands:
+  build: "npm run build"
+  test: "npm run test:e2e"
+prompt:
+  postImplementReminders: |
+    Open a PR with `Fixes #{N}` in the body — leave it as a **draft**.
+    UI changes REQUIRE screenshots committed under `artifacts/issue-{N}/` and linked in the issue completion comment.
+    Update labels: remove `agent-working`, add `pr-opened` when the PR is open.
+    You MUST post the issue completion comment before stopping. Do not stop right after opening the PR.

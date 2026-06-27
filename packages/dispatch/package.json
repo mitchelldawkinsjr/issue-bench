@@ -1,0 +1,27 @@
+{
+  "name": "@issue-bench/dispatch",
+  "version": "0.2.0",
+  "description": "Cursor cloud agent dispatch for issue-bench pipelines",
+  "type": "module",
+  "main": "./dispatch-cursor-agent.mjs",
+  "bin": {
+    "issue-bench-dispatch": "./dispatch-cursor-agent.mjs"
+  },
+  "files": [
+    "dispatch-cursor-agent.mjs",
+    "load-config.mjs",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@cursor/sdk": "^1.0.18"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mitchelldawkinsjr/issue-bench.git",
+    "directory": "packages/dispatch"
+  }
+}

@@ -18,6 +18,8 @@ const required = [
   "template/.github/ai-spec-context.md",
   "template/.github/ai-implement-context.md",
   "template/package.json",
+  "template/scripts/dispatch-cursor-agent.mjs",
+  "template/scripts/load-config.mjs",
   "docs/LABELS.md",
   "docs/SETUP.md",
   "LICENSE",

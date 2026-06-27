@@ -37,9 +37,10 @@ Copy from [`template/`](../../template/):
 - `.github/ai-spec-context.md`
 - `.github/ai-implement-context.md`
 - `.github/issue-bench.yml`
-- `package.json` dependency on `@issue-bench/dispatch`
+- `package.json` with `@cursor/sdk` dependency
+- `scripts/dispatch-cursor-agent.mjs` and `scripts/load-config.mjs`
 
-Run `npm install` to install the dispatch package.
+Run `npm install` to install `@cursor/sdk` for the dispatch script.
 
 ## Customize context files
 
@@ -78,4 +79,4 @@ After your first successful CI run, enable branch protection on `main` and requi
 | Stage 2 fails immediately | Issue needs `spec-added` before `ready` |
 | Agent fails to start | Verify `CURSOR_API_KEY` and Cursor repo access |
 | Empty spec comment | Check `OPENAI_API_KEY` and `ai-spec-context.md` size |
-| `npm ci` fails in Actions | Ensure `package.json` lists `@issue-bench/dispatch` |
+| `npm ci` fails in Actions | Ensure `package.json` lists `@cursor/sdk` and `scripts/dispatch-cursor-agent.mjs` exists |

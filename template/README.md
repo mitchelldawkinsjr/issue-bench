@@ -45,7 +45,9 @@ npm install
 | `.github/ai-spec-context.md` | Repo context for spec generation |
 | `.github/ai-implement-context.md` | Implement agent prompt + checklist |
 | `.github/issue-bench.yml` | Optional dispatch config |
-| `package.json` | `@issue-bench/dispatch` dependency |
+| `package.json` | `@cursor/sdk` dependency |
+| `scripts/dispatch-cursor-agent.mjs` | Cursor cloud agent dispatch (synced from issue-bench) |
+| `scripts/load-config.mjs` | Optional `issue-bench.yml` config loader |
 
 ## Labels
 

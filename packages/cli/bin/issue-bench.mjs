@@ -96,13 +96,12 @@ async function prompt(rl, question, defaultValue) {
 
 async function ensurePackageJson(targetDir) {
   const pkgPath = join(targetDir, "package.json");
+  const cursorSdk = "^1.0.18";
   if (await pathExists(pkgPath)) {
     const pkg = JSON.parse(await readFile(pkgPath, "utf-8"));
     pkg.dependencies = pkg.dependencies || {};
-    pkg.devDependencies = pkg.devDependencies || {};
-    if (!pkg.dependencies["@issue-bench/dispatch"]) {
-      pkg.dependencies["@issue-bench/dispatch"] =
-        "github:mitchelldawkinsjr/issue-bench#packages/dispatch";
+    if (!pkg.dependencies["@cursor/sdk"]) {
+      pkg.dependencies["@cursor/sdk"] = cursorSdk;
     }
     if (!pkg.type) pkg.type = "module";
     await writeFile(pkgPath, `${JSON.stringify(pkg, null, 2)}\n`);
@@ -116,14 +115,23 @@ async function ensurePackageJson(targetDir) {
         private: true,
         type: "module",
         dependencies: {
-          "@issue-bench/dispatch":
-            "github:mitchelldawkinsjr/issue-bench#packages/dispatch",
+          "@cursor/sdk": cursorSdk,
         },
       },
       null,
       2
     )}\n`
   );
+}
+
+async function copyDispatchScripts(targetDir) {
+  await mkdir(join(targetDir, "scripts"), { recursive: true });
+  for (const file of ["dispatch-cursor-agent.mjs", "load-config.mjs"]) {
+    await copyFile(
+      join(REPO_ROOT, "packages/dispatch", file),
+      join(targetDir, "scripts", file)
+    );
+  }
 }
 
 async function copyWorkflows(targetDir) {
@@ -238,6 +246,7 @@ async function main() {
   );
 
   await copyWorkflows(targetDir);
+  await copyDispatchScripts(targetDir);
   await ensurePackageJson(targetDir);
 
   if (createLabels && repo.includes("/")) {
@@ -255,7 +264,7 @@ issue-bench initialized in ${targetDir}
 Next steps:
   1. Add GitHub Actions secrets: OPENAI_API_KEY, CURSOR_API_KEY
   2. Enable Cursor cloud agent access for this repository
-  3. Run npm install (installs @issue-bench/dispatch)
+  3. Run npm install (installs @cursor/sdk for the dispatch script)
   4. Create an issue → add needs-spec → review spec → add ready
   5. Review the draft PR and merge manually
 

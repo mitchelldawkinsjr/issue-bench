@@ -41,9 +41,12 @@ try {
 
   if (!spec.includes("Vite Test")) throw new Error("spec context missing project name");
   if (!implement.includes("npm run test:e2e")) throw new Error("implement missing test command");
-  if (!pkg.dependencies?.["@issue-bench/dispatch"]) {
-    throw new Error("package.json missing @issue-bench/dispatch");
+  if (!pkg.dependencies?.["@cursor/sdk"]) {
+    throw new Error("package.json missing @cursor/sdk");
   }
+
+  await access(join(tmp, "scripts/dispatch-cursor-agent.mjs"));
+  await access(join(tmp, "scripts/load-config.mjs"));
 
   console.log("validate-vite-consumer: structure checks passed");
 } finally {

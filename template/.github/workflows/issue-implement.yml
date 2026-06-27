@@ -71,7 +71,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           ISSUE_NUMBER: ${{ github.event.issue.number }}
           REPO: ${{ github.repository }}
-        run: node node_modules/@issue-bench/dispatch/dispatch-cursor-agent.mjs
+        run: node scripts/dispatch-cursor-agent.mjs
 
       - name: Recover issue labels on dispatch failure
         if: failure() && steps.guards.outputs.skip != 'true'

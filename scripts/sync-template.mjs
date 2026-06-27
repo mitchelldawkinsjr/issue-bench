@@ -21,11 +21,19 @@ const vars = {
 };
 
 await mkdir(join(ROOT, "template/.github/workflows"), { recursive: true });
+await mkdir(join(ROOT, "template/scripts"), { recursive: true });
 
 for (const file of ["issue-spec.yml", "issue-implement.yml"]) {
   await copyFile(
     join(ROOT, "workflows", file),
     join(ROOT, "template/.github/workflows", file)
+  );
+}
+
+for (const file of ["dispatch-cursor-agent.mjs", "load-config.mjs"]) {
+  await copyFile(
+    join(ROOT, "packages/dispatch", file),
+    join(ROOT, "template/scripts", file)
   );
 }
 
@@ -49,4 +57,4 @@ await writeFile(
 );
 await writeFile(join(ROOT, "template/.github/issue-bench.yml"), fill(configTemplate, vars));
 
-console.log("Synced template/ from workflows/ and context/");
+console.log("Synced template/ from workflows/, context/, and packages/dispatch/");

@@ -3,6 +3,6 @@
   "private": true,
   "type": "module",
   "dependencies": {
-    "@issue-bench/dispatch": "github:mitchelldawkinsjr/issue-bench#packages/dispatch"
+    "@cursor/sdk": "^1.0.18"
   }
 }

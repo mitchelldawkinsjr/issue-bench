@@ -1,32 +1,29 @@
 # @issue-bench/dispatch
 
-Dispatches a Cursor cloud agent when the `ready` label is applied to a GitHub issue.
+Source of truth for the Cursor cloud agent dispatch script used by [issue-bench](https://github.com/mitchelldawkinsjr/issue-bench).
 
-Used by [issue-bench](https://github.com/mitchelldawkinsjr/issue-bench) workflows. Reads `.github/ai-implement-context.md` and optional `.github/issue-bench.yml` from the consumer repo.
+## Consumer install
 
-## Install
-
-```bash
-npm install @issue-bench/dispatch
-```
-
-Or from GitHub before npm publish:
+**Recommended:** copy via CLI or template sync (vendored into `scripts/`):
 
 ```bash
-npm install github:mitchelldawkinsjr/issue-bench#packages/dispatch
+npx issue-bench init
+npm install   # installs @cursor/sdk
 ```
 
-## Workflow usage
+Workflows run `node scripts/dispatch-cursor-agent.mjs`.
 
-```yaml
-- run: node node_modules/@issue-bench/dispatch/dispatch-cursor-agent.mjs
-  env:
-    CURSOR_API_KEY: ${{ secrets.CURSOR_API_KEY }}
-    GH_TOKEN: ${{ github.token }}
-    ISSUE_NUMBER: ${{ github.event.issue.number }}
-    REPO: ${{ github.repository }}
+## npm package (optional)
+
+When published to npm:
+
+```bash
+npm install @issue-bench/dispatch @cursor/sdk
+node node_modules/@issue-bench/dispatch/dispatch-cursor-agent.mjs
 ```
+
+Until published, use vendored scripts from `template/scripts/` or `npx issue-bench init`.
 
 ## Configuration
 
-Optional `.github/issue-bench.yml` — see [docs/SETUP.md](../../docs/SETUP.md) in the repo root.
+Optional `.github/issue-bench.yml` in the consumer repo — see [docs/SETUP.md](../../docs/SETUP.md).
